@@ -1,0 +1,265 @@
+<app-navigation></app-navigation>
+<div class="home-container">
+  <h1>Crear nuevo empleado</h1>
+  <br>
+  <form [formGroup]="registrateSupervisorForm">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6">
+            <p> <mat-icon>person</mat-icon> <strong> Información personales </strong> </p>
+            <mat-form-field class="full-width">
+                <input 
+                matInput
+                type="text"
+                placeholder="Nombre"
+                formControlName="nameFormControl"
+                required
+                autocomplete="off">
+                <mat-hint>
+                        Ingresa tu nombre completo
+                </mat-hint>
+                <mat-error *ngIf="registrateSupervisorForm.controls.nameFormControl.hasError('required')">
+                        Ingresa un nombre
+                </mat-error>
+            </mat-form-field> 
+            <mat-form-field class="full-width">
+                    <input   
+                        matInput 
+                        [matDatepicker]="picker3" 
+                        placeholder="Fecha de nacimiento"
+                        formControlName="birthDateFormControl"
+                        disabled>
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker  #picker3 disabled="false"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                    <input 
+                        matInput
+                        type="email"
+                        placeholder="Correo electrónico"
+                        required
+                        formControlName="emailFormControl">
+                        <mat-hint>
+                                Ingresa un correo electrónico
+                        </mat-hint>
+                        <mat-error *ngIf="registrateSupervisorForm.controls.emailFormControl.hasError('email') && !registrateSupervisorForm.controls.emailFormControl.hasError('required')">
+                                Ingresa un correo válido
+                        </mat-error>
+                        <mat-error *ngIf="registrateSupervisorForm.controls.emailFormControl.hasError('required')">
+                                Ingresa un correo electrónico
+                        </mat-error>
+            </mat-form-field>                    
+            <table class="full-width" cellspacing="0"> 
+                <tr>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <input 
+                                matInput
+                                type="text"
+                                placeholder="Ciudad"
+                                required
+                                formControlName="cityFormControl">
+                                <mat-hint>
+                                    Ingresa una ciudad o municipio
+                            </mat-hint>
+                                <mat-error *ngIf="registrateSupervisorForm.controls.cityFormControl.hasError('required')">
+                                    Ingresa un nombre
+                                </mat-error>
+                        </mat-form-field>   
+                    </td>
+                    <td>
+                        <!-- <mat-form-field class="full-width">
+                            <mat-select  required placeholder="Estado" formControlName="stateFormControl">
+                                <mat-optgroup *ngFor="let group of stateGroups" [label]="group.name">
+                                    <mat-option *ngFor="let state of group.states" [value]="state.value">
+                                        ¡  {{ state.value }}
+                                    </mat-option>
+                                </mat-optgroup>
+                                </mat-select>
+                                <mat-error *ngIf="registrateSupervisorForm.controls.stateFormControl.hasError('required')">
+                                    Selecciona un estado
+                                </mat-error>
+                        </mat-form-field> -->
+                    </td>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <input 
+                                matInput
+                                type="text"
+                                placeholder="Codigo Postal"
+                                required
+                                minlength="5"
+                                maxlength="5"                                    
+                                formControlName="postalCodeFormControl">
+                                <mat-hint align="end">5</mat-hint>
+                                <mat-error *ngIf="registrateSupervisorForm.controls.postalCodeFormControl.hasError('required')">
+                                    Ingresa el código postal
+                                </mat-error>
+                                <mat-error *ngIf="registrateSupervisorForm.controls.postalCodeFormControl.hasError('minlength')">
+                                    Ingresa 5 dígitos
+                                </mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <mat-form-field class="full-width">
+                <input 
+                    matInput
+                    type="text"
+                    placeholder="Dirección"
+                    required
+                    formControlName="addressFormControl">
+                    <mat-hint>
+                        Delegación , Colonia o Vía, Calle + No.Exterior e Interior
+                    </mat-hint>
+                    <mat-error *ngIf="registrateSupervisorForm.controls.addressFormControl.hasError('required')">
+                        Ingresa una dirección
+                    </mat-error>
+            </mat-form-field>  
+            <table class="full-width">
+                <tr>
+                <td>
+                    <mat-form-field class="full-width">
+                        <input 
+                            matInput
+                            type="text"
+                            placeholder="CURP"
+                            required
+                            minlength="18"
+                            maxlength="18" 
+                            formControlName="curpFormControl">
+                            <mat-hint>
+                                Clave Única de Registro de Población (CURP)
+                            </mat-hint>
+                            <mat-error *ngIf="registrateSupervisorForm.controls.curpFormControl.hasError('required')">
+                                Ingresa tu curp
+                            </mat-error>
+                            <mat-error *ngIf="registrateSupervisorForm.controls.curpFormControl.hasError('minlength')">
+                                Ingresa 18 dígitos
+                            </mat-error>
+                    </mat-form-field> 
+                </td>
+                <td>
+                    <mat-form-field class="full-width">
+                        <input 
+                            matInput
+                            type="text"
+                            placeholder="RFC"
+                            required
+                            minlength="13"
+                            maxlength="13" 
+                            formControlName="rfcFormControl">
+                            <mat-hint>
+                                Registro Federal del Contribuyente (Homoclave)
+                            </mat-hint>
+                            <mat-error *ngIf="registrateSupervisorForm.controls.rfcFormControl.hasError('required')">
+                                Ingresa tu RFC
+                            </mat-error>
+                            <mat-error *ngIf="registrateSupervisorForm.controls.rfcFormControl.hasError('minlength')">
+                                    Ingresa 10 dígitos
+                            </mat-error>
+                    </mat-form-field> 
+                </td>
+                </tr>
+            </table>
+            <mat-form-field class="full-width">
+                <input 
+                    matInput
+                    type="text"
+                    placeholder="NSS"
+                    required
+                    minlength="11"
+                    maxlength="11" 
+                    formControlName="nssFormControl">
+                    <mat-hint>
+                        Número de seguridad social
+                    </mat-hint>
+                    <mat-error *ngIf="registrateSupervisorForm.controls.nssFormControl.hasError('required')">
+                        Ingresa tu NSS
+                    </mat-error>
+                    <mat-error *ngIf="registrateSupervisorForm.controls.nssFormControl.hasError('minlength')">
+                            Ingresa 11 dígitos
+                    </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6">
+            <table class="full-width">
+                <tr>
+                    <mat-icon>insert_drive_file</mat-icon> 
+                    <strong>  Contrato</strong>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="full-width">
+                            <input   
+                                matInput 
+                                [matDatepicker]="picker" 
+                                placeholder="Fecha de inicio de contrato"
+                                formControlName="contractDateBeginFormControl"
+                                disabled>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker disabled="false" #picker></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="full-width">
+                                <input   
+                                    matInput 
+                                    [matDatepicker]="picker2" 
+                                    placeholder="Fecha de fin de contrato"
+                                    formControlName="contractDateExpFormControl"
+                                    disabled>
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker disabled="false" #picker2></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <mat-form-field class="full-width">
+                <mat-select 
+                        required 
+                        placeholder="Tipo de empleado" 
+                        formControlName="employeeTypeFormControl">
+                    <mat-option value="supervisor">
+                        Supervisor
+                    </mat-option>
+                    <mat-option value="promoter">
+                        Promotor
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p>  <mat-icon>account_box</mat-icon>     <strong>Cuenta</strong></p>
+            <mat-form-field class="full-width">
+                    <input 
+                        matInput
+                        type="text"
+                        required
+                        placeholder="Fotografía del supervisor"
+                        formControlName="imageFormControl">
+                        <mat-error *ngIf="registrateSupervisorForm.controls.imageFormControl.hasError('required')">
+                                Ingresa la url de la imagen
+                        </mat-error>
+                        <mat-hint>Resolución cuadrada (500x500px, 300x300px, etc)</mat-hint>
+            </mat-form-field>
+            <table class="full-width">
+                <tr>
+                   <!-- <td *ngIf="registrateSupervisorForm.valid">-->
+                    <td>
+                        <button 
+                                *ngIf="this.registrateSupervisorForm.controls.nameFormControl.valid && this.registrateSupervisorForm.controls.birthDateFormControl.valid" 
+                                (click)="generatePassword()" mat-raised-button class="btn-login">
+                            <mat-icon>fingerprint</mat-icon> <strong>Generar Password</strong>
+                        </button>
+                        <mat-error *ngIf="showErrowForm">Genera una contraseña</mat-error>
+                    </td>
+                    <td>
+                        <span class="password-show" *ngIf="generatedPasswordEmployee">Tu contraseña es:  <strong>{{ generatedPasswordEmployee }}</strong> </span>
+                    </td>                    
+                </tr>
+            </table>
+        </div>
+      </div>
+      <button (click)="registerAccountWithEmailAndPassword()" [disabled]="!registrateSupervisorForm.valid" mat-raised-button type="submit" class="btn-login">
+          <span> CREAR SUPERVISOR </span>
+      </button> 
+  </form>  
+</div>

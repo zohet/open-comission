@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.app",
+  "appName": "nixtla-desktop",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

@@ -1,0 +1,9 @@
+.floating-button {
+    background-color:  rgb(0, 59, 253);
+    position: fixed;
+    z-index: 3;
+    bottom: 5%;
+    right: 5%;
+    width: 55px;
+    height: 55px;
+}

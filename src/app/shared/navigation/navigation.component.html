@@ -1,0 +1,17 @@
+<nav class="aside-bar">   
+  <a class="brand-name" href="/">N</a>
+  <ul class="menu-items">
+      <li class="menu-item" (click)="navigate('branches')" matTooltip="Sucursales" matTooltipPosition="after">
+              <mat-icon>location_on</mat-icon>                
+      </li>
+      <li class="menu-item" (click)="navigate('supervisors')" matTooltip="Supervisores" matTooltipPosition="after">
+              <mat-icon>group</mat-icon>                
+      </li>
+      <li class="menu-item" (click)="navigate('promoters')" matTooltip="Promotores" matTooltipPosition="after">
+              <mat-icon>person</mat-icon>                
+      </li>
+      <li (click)="logout()" class="menu-item" matTooltip="Salir de Nixtla" matTooltipPosition="after">
+            <mat-icon>exit_to_app</mat-icon>                
+      </li>  
+  </ul>
+</nav>

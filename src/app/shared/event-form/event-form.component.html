@@ -1,0 +1,71 @@
+<form *ngIf="employee"  (ngSubmit)="setNewEmployeeEvent()" [formGroup]="eventForm">
+    <mat-form-field class="full-width">
+            <mat-select 
+                    required
+                    placeholder="Selecciona una sucursal"
+                    formControlName="branchFormControl">
+                <mat-option *ngFor="let branch of branches | async" [value]="branch.uid">
+                    <img style="vertical-align:middle;" aria-hidden src="{{branch.image}}" height="35" />
+                    <span>{{ branch.name }}</span>
+                </mat-option>
+            </mat-select>
+    </mat-form-field>
+      <table class="full-width">
+        <tr>
+          <td>
+              <mat-form-field class="full-width">
+                  <input   
+                        matInput 
+                        [matDatepicker]="picker" 
+                        placeholder="Fecha de inicio de evento"
+                        formControlName="eventDateBeginFormControl">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field class="full-width">
+                  <input   
+                        matInput 
+                        [matDatepicker]="picker2" 
+                        placeholder="Fecha de fin de evento"
+                        formControlName="eventDateExpFormControl">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+          </td>
+        </tr>
+        <tr *ngIf="employee.employeeKey ==='promoter'">
+          <td>
+              <mat-form-field class="full-width">
+                  <mat-select 
+                          required
+                          placeholder="Horario de entrada"
+                          formControlName="hourWorkdayBeginFormControl">
+                      <mat-option *ngFor="let openSched of openSchedules" [value]="openSched.valueTime">
+                              {{ openSched.sched }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field class="full-width">
+                  <mat-select 
+                          required
+                          placeholder="Horario de salida"
+                          formControlName="hourWorkdayEndFormControl">
+                      <mat-option *ngFor="let closeSched of closingSchedules" [value]="closeSched.valueTime">
+                              {{ closeSched.sched }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <button [disabled]="!eventForm.valid" 
+               mat-raised-button 
+               type="submit" class="btn-login text-center">
+            <span>ASIGNAR EVENTO</span>
+      </button> 
+</form>

@@ -1,0 +1,66 @@
+  <div class="container centered-form">
+  <div class="row">
+          <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-4 col-xs-12 col-lg-4 offset-lg-4 bordered-form">
+            <h1>Nixtla</h1>
+            <h5>Administrador</h5>
+            <h6>Registro</h6>
+            <form [formGroup]="registrationForm"
+                  (ngSubmit)="registerAccountWithEmailAndPassword()">    
+              <mat-form-field class="full-width">
+                      <input 
+                          matInput
+                          type="email"
+                          placeholder="Correo electrónico"
+                          required
+                          formControlName="emailFormControl">
+                          <mat-hint>
+                                Ingresa un correo electrónico
+                         </mat-hint>
+                          <mat-error *ngIf="registrationForm.controls.emailFormControl.hasError('email') && !registrationForm.controls.emailFormControl.hasError('required')">
+                                Ingresa un correo válido
+                          </mat-error>
+                          <mat-error *ngIf="registrationForm.controls.emailFormControl.hasError('required')">
+                                Ingresa un correo electrónico
+                         </mat-error>
+              </mat-form-field>                   
+            <mat-form-field class="full-width">
+                      <input 
+                          matInput
+                          type="text"
+                          placeholder="Nombre"
+                          formControlName="nameFormControl"
+                          required
+                          autocomplete="off">
+                          <mat-hint>
+                                Ingresa tu nombre completo
+                         </mat-hint>
+                          <mat-error *ngIf="registrationForm.controls.nameFormControl.hasError('required')">
+                                Ingresa un nombre
+                         </mat-error>
+              </mat-form-field>  
+              <mat-form-field class="full-width">
+                      <input 
+                          matInput
+                          type="password"
+                          placeholder="Contraseña"
+                          formControlName="passwordFormControl"
+                          required minlength="8" maxlength="20"> 
+                          <mat-hint>
+                               Escribe una contraseña mínimo 8 y máximo 20 caracteres 
+                         </mat-hint>
+                         <mat-error *ngIf="registrationForm.controls.passwordFormControl.hasError('minlength')">
+                                La contraseña debe tener mínimo 8 caracteres
+                         </mat-error>  
+                          <mat-error *ngIf="registrationForm.controls.passwordFormControl.hasError('required')">
+                                Ingresa una contraseña
+                         </mat-error>                   
+              </mat-form-field> 
+              <br>
+              <br>
+              <button [disabled]="!registrationForm.valid" mat-raised-button type="submit" class="btn-login">REGISTRAR CUENTA</button>
+        </form>
+          <hr>
+          <p class="register-invitation">¿Ya tienes una cuenta? Inicia sesión <a href="/login">aquí</a> </p>          
+      </div>
+   </div>
+</div> 

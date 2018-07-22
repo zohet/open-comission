@@ -1,0 +1,47 @@
+<div class="container centered-form">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-4 col-xs-12 col-lg-4 offset-lg-4 bordered-form">
+            <h1>OC</h1>
+            <h5 class="text-center">Administrador</h5> 
+            <form [formGroup]="loginForm">
+                <mat-form-field class="full-width">
+                        <input 
+                            matInput
+                            type="email"
+                            placeholder="Correo electrónico"
+                            formControlName="emailFormControl">
+                        <mat-hint>
+                                Ingresa un correo electrónico
+                        </mat-hint>
+                        <mat-error *ngIf="loginForm.controls.emailFormControl.hasError('email') && !loginForm.controls.emailFormControl.hasError('required')">
+                            Ingresa un correo válido
+                      </mat-error>
+                      <mat-error *ngIf="loginForm.controls.emailFormControl.hasError('required')">
+                            Ingresa un correo electrónico
+                     </mat-error>
+                </mat-form-field> 
+                <mat-form-field class="full-width">
+                        <input   
+                            matInput
+                            [type]="changeType"
+                            placeholder="Contraseña"
+                            formControlName="passwordFormControl">
+                            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="togglePasswordDisplay()">
+                                <mat-icon>{{ visibilityIcon }}</mat-icon>
+                            </button>
+                            <mat-hint>
+                                Ingresa tu contraseña
+                            </mat-hint>
+                            <mat-error *ngIf="loginForm.controls.passwordFormControl.hasError('required')">
+                                Ingresa tu contraseña
+                         </mat-error>
+                </mat-form-field>
+                <button (click)="loginToAccountWithEmailAndPassword()" [disabled]="!loginForm.valid" class="btn-login" type="submit" mat-raised-button>                              
+                        ENTRAR
+                </button>        
+            </form>
+            <hr>
+            <p class="register-invitation">¿No tienes una cuenta? regístrate <a href="/register">aquí</a></p>                      
+        </div>
+    </div>
+</div>      
